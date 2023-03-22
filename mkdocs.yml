@@ -1,0 +1,18 @@
+site_name: MeLo
+nav:
+    - All Models: index.html
+    - Getting started: why_melo.md
+    - Installation: installation.md
+    - Diagnosis Models: diagnosis.md
+    - Segmentation Models: segmentation.md
+    - Generation Models: generation.md
+    - Future Plan: future.md
+    - About: about.md
+
+theme:
+    name: readthedocs
+    nav_style: dark
+
+plugins:
+    - search
+    - macros

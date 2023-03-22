@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Display Images in Folder</title>
+	<style>
+		/* Add some basic styles to the image gallery */
+		#image-gallery {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+		}
+
+		#image-gallery img {
+			max-width: 100%;
+			height: auto;
+			margin: 10px;
+			box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+		}
+	</style>
+</head>
+<body>
+	<h1>Image Gallery</h1>
+	<p>This page displays all images in a folder.</p>
+	<div id="image-gallery"></div>
+
+	<script>
+		function displayImages() {
+		    var images = [];
+		    var imageGallery = document.getElementById("image-gallery");
+
+		    // Load images from the folder
+		    var xhr = new XMLHttpRequest();
+		    xhr.open("GET", "models/diagnosis/Knee-X-ray-OAI", true);
+		    xhr.responseType = "document";
+		    xhr.onload = function() {
+		        var doc = this.responseXML;
+		        var imgElements = doc.getElementsByTagName("img");
+		        for (var i = 0; i < imgElements.length; i++) {
+		            var imgSrc = imgElements[i].getAttribute("src");
+		            images.push(imgSrc);
+		        }
+
+		        // Add images to the div
+		        for (var j = 0; j < images.length; j++) {
+		            var img = document.createElement("img");
+		            img.src = images[j];
+		            imageGallery.appendChild(img);
+		        }
+		    };
+		    xhr.send();
+		}
+
+		window.onload = function() {
+			displayImages();
+		};
+	</script>
+</body>
+</html>
